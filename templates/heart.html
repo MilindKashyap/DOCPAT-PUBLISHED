@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Predictor</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <!-- Your custom CSS -->
+    <style>
+        body {
+            font-family: Cambria;
+            background-image: linear-gradient(#e35656, #e5a569);
+            height: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        .input-box {
+            margin-bottom: 15px;
+            border: 2px solid #000000;
+            background-color: #f3c2c2;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .btn-predict {
+            background-color: #eb554d;
+            color: #fff;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .btn-predict:hover {
+            background-color: #0056b3;
+        }
+        .btn-home {
+    background-color: #000000; /* Black color */
+    color: white;
+    height: 50px;
+    width: 100px;
+    padding: 4px 4px; /* Smaller padding */
+    font-size: 26px; /* Smaller font size */
+    border-radius: 5px;
+    margin-top: 1px;
+    margin-bottom: -32px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none; /* Remove underline */
+    text-align: center;
+}
+
+.btn-home:hover {
+    background-color: #333333; /* Darker shade of black on hover */
+    color: white; /* Keep text white on hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <img src="/static/NEWLOGO.png" alt="Logo" class="logo">
+    </header>
+    <div>
+        <a href="/" class="btn-home">Home</a> <!-- Link to the home page -->
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="text-center mb-4">Heart Disease Predictor</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <form action="/predicth/" method="POST">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="age" placeholder="Age (in years)">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="sex" placeholder="Sex (1 = Male; 0 = Female)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="cp" placeholder="Chest Pain Type">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="trestbps" placeholder="Resting Blood Pressure (in mm Hg)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="chol" placeholder="Serum Cholesterol (in mg/dl)">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="fbs" placeholder="Fasting Blood Sugar > 120 mg/dl (1 = True; 0 = False)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="restecg" placeholder="Resting Electrocardiograph Results">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="thalach" placeholder="Maximum Heart Rate Achieved">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="exang" placeholder="Exercise Induced Angina (1 = Yes; 0 = No)">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="oldpeak" placeholder="ST Depression Induced by Exercise Relative to Rest">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="slope" placeholder="The Slope of the Peak Exercise ST Segment">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="ca" placeholder="Number of Major Vessels (0-3) Colored by Fluoroscopy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-box" type="text" name="thal" placeholder="Thal: 1 = Normal; 2 = Fixed Defect; 3 = Reversible Defect">
+                            </div>
+                        </div>
+                    </div>
+                    <input class="btn btn-info btn-block btn-predict" type="submit" value="Predict">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

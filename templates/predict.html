@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .result-box {
+            color: #040404;
+            background-color: rgba(200, 240, 196, 0.8);
+            padding: 20px 60px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin: 40px;
+            max-width: 500px;
+        }
+        .result-box h2 {
+            margin-bottom: 20px;
+        }
+        .result-message {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .back-to-home-btn {
+            background-color: hsl(286, 64%, 80%);
+            color: #000000;
+            font-size: 18px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-home-btn:hover {
+            background-color: #f0f0f0;
+        }
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/static/NEWLOGO.png" alt="Logo" class="logo">
+    </header>
+
+    <div class="result-box">
+        <h2>Result</h2>
+        {% if prediction_result == 0 %}
+        <div class="result-message">The patient is fit.</div>
+        {% else %}
+        <div class="result-message">The patient is not fit.</div>
+        {% endif %}
+        <!-- Display the raw prediction result -->
+        <p>The predicted result is: {{ prediction_result }}</p>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <div>
+        <a href="/" class="back-to-home-btn">Back to Home</a>
+    </div>
+</body>
+</html>

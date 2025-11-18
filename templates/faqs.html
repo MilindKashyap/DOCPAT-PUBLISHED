@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ Page</title>
+  <!-- Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Your custom CSS -->
+  <style>
+    /* Custom CSS for FAQ page */
+    /* Body style */
+    body {
+        background-color: #f8f9fa; /* Light grey background */
+        font-family: Arial, sans-serif;
+    }
+
+    /* Header style */
+    header {
+        background-color: #343a40; /* Dark grey header background */
+        color: #fff; /* White text color */
+        padding: 20px 0; /* Add padding */
+    }
+
+    /* Main container style */
+    .container {
+        background-color: #dfea99; /* White container background */
+        padding: 20px; /* Add padding */
+        border-radius: 10px; /* Add rounded corners */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+    }
+
+    /* FAQ question style */
+    .card-header {
+        background-color: #ffffff; /* Blue header background */
+        color: #fff; /* White text color */
+        border-radius: 5px; /* Add rounded corners */
+    }
+
+    /* FAQ answer style */
+    .card-body {
+        background-color: #f8f9fa; /* Light grey background */
+        color: #333; /* Dark grey text color */
+    }
+
+    /* Custom CSS for Home button */
+    .btn-home {
+        background-color: #ffc107; /* Yellow background color */
+        color: #212529; /* Text color */
+        font-size: 20px; /* Increased font size */
+        padding: 10px 20px; /* Add padding */
+        border-radius: 10px; /* Add rounded corners */
+        align-items: center;
+    }
+
+    /* Hover effect */
+    .btn-home:hover {
+        background-color: #ffb300; /* Darker shade of yellow on hover */
+        color: #212529; /* Text color */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/static/NEWLOGO.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="btn btn-home" href="/" role="button">Home</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <br>
+  <br>
+  <br>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1 class="text-center mb-4">Frequently Asked Questions</h1>
+    <div class="accordion" id="faqAccordion">
+      <div class="card">
+        <div class="card-header" id="faqHeading1">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+              Q1: What are the common symptoms of diabetes?
+            </button>
+          </h2>
+        </div>
+        <div id="faqCollapse1" class="collapse show" aria-labelledby="faqHeading1" data-parent="#faqAccordion">
+          <div class="card-body">
+            A1: The common symptoms of diabetes include frequent urination, increased thirst, unexplained weight loss, fatigue, blurred vision, and slow-healing sores or cuts.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="faqHeading2">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+              Q2: How can breast cancer be detected early?
+            </button>
+          </h2>
+        </div>
+        <div id="faqCollapse2" class="collapse" aria-labelledby="faqHeading2" data-parent="#faqAccordion">
+          <div class="card-body">
+            A2: Breast cancer can be detected early through regular breast self-exams, clinical breast exams, and mammograms. It's important to be aware of any changes in the breast and seek medical advice if needed.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="faqHeading3">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+              Q3: What lifestyle changes can help prevent heart disease?
+            </button>
+          </h2>
+        </div>
+        <div id="faqCollapse3" class="collapse" aria-labelledby="faqHeading3" data-parent="#faqAccordion">
+          <div class="card-body">
+            A3: Lifestyle changes that can help prevent heart disease include maintaining a healthy diet, engaging in regular physical activity, managing stress, avoiding tobacco use, and limiting alcohol intake.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="faqHeading4">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+              Q4: What are the treatment options for liver disease?
+            </button>
+          </h2>
+        </div>
+        <div id="faqCollapse4" class="collapse" aria-labelledby="faqHeading4" data-parent="#faqAccordion">
+          <div class="card-body">
+            A4: Treatment options for liver disease vary depending on the type and severity of the condition. They may include lifestyle changes, medications, or, in severe cases, liver transplantation.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="faqHeading5">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+              Q5: How often should one undergo health screenings?
+            </button>
+          </h2>
+        </div>
+        <div id="faqCollapse5" class="collapse" aria-labelledby="faqHeading5" data-parent="#faqAccordion">
+          <div class="card-body">
+            A5: The frequency of health screenings depends on various factors such as age, gender, family history, and existing health conditions. It's best to consult with a healthcare professional to determine the appropriate screening schedule for individual needs.
+          </div>
+        </div>
+      </div>
+
+      <!-- New Gastrointestinal Disease FAQ -->
+      <div class="card">
+        <div class="card-header" id="faqHeading6">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
+              Q6: What are the common symptoms of gastrointestinal disease?
+            </button>
+          </h2>
+        </div>
+        <div id="faqCollapse6" class="collapse" aria-labelledby="faqHeading6" data-parent="#faqAccordion">
+          <div class="card-body">
+            A6: The common symptoms of gastrointestinal diseases include abdominal pain, bloating, nausea, vomiting, diarrhea, constipation, heartburn, and indigestion. If you experience these symptoms frequently, it is advisable to consult a healthcare professional.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto py-3 bg-dark text-white">
+    <div class="container text-center">
+      <span class="text-muted">DOC-PAT&copy; 2023</span>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and jQuery links -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDzwrnQq4xF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Predictor</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <!-- Your custom CSS -->
+    <style>
+        body {
+            font-family: Cambria;
+            background-image: linear-gradient(#eddd61, #93bbec);
+            height: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        .input-box {
+            margin-bottom: 15px;
+            border: 2px solid #000000;
+            background-color: #eae7bb;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .btn-predict {
+            background-color: #f0e857;
+            color: #000000;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .btn-predict:hover {
+            background-color: #0056b3;
+        }
+        .btn-home {
+    background-color: #000000; /* Black color */
+    color: white;
+    height: 50px;
+    width: 100px;
+    padding: 4px 4px; /* Smaller padding */
+    font-size: 26px; /* Smaller font size */
+    border-radius: 5px;
+    margin-top: 4px;
+    margin-bottom: -32px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none; /* Remove underline */
+    text-align: center;
+}
+
+.btn-home:hover {
+    background-color: #333333; /* Darker shade of black on hover */
+    color: white; /* Keep text white on hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <img src="/static/NEWLOGO.png" alt="Logo" class="logo">
+    </header>
+    <div>
+        <a href="/" class="btn-home">Home</a> <!-- Link to the home page -->
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="text-center mb-4">Diabetes Predictor</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <form action="/predictd/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control input-box" type="text" name="Pregnancies"
+                            placeholder="No. of Pregnancies">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-box" type="text" name="Glucose" placeholder="Glucose">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-box" type="text" name="BloodPressure"
+                            placeholder="Blood Pressure (in mmHg)">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-box" type="text" name="SkinThickness"
+                            placeholder="Skin Thickness (in mm)">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-box" type="text" name="Insulin" placeholder="Insulin (in µU/ml)">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-box" type="text" name="BMI" placeholder="BMI">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-box" type="text" name="DiabetesPedigreeFunction"
+                            placeholder="Diabetes Pedigree Function">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-box" type="text" name="Age" placeholder="Age (in years)">
+                    </div>
+
+                    <!-- Predict button -->
+                    <button type="submit" class="btn btn-primary btn-predict">Predict</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

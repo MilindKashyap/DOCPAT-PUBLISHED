@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastrointestinal Disease Predictor</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Cambria;
+            background-image: linear-gradient(#b4b9e9, #e1926ab3);
+            height: 100%;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        .input-box {
+            margin-bottom: 25px;
+            border: 2px solid #000000;
+            background-color: #b2c5e7;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: auto;
+            margin-bottom: 50px;
+        }
+
+        .btn-predict {
+            background-color: #b2c5e7;
+            color: #000000;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            width: 100%;
+            border: 2px solid #000000;
+        }
+
+        .btn-predict:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        .form-group {
+            text-align: center;
+        }
+
+        .file-upload {
+            font-size: 18px;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            margin-top: 20px;
+            display: none;
+            border: 2px dashed #ccc;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .btn-delete {
+            background-color: red;
+            color: white;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn-delete:hover {
+            background-color: rgb(214, 225, 96);
+        }
+        .btn-home {
+    background-color: #000000; /* Black color */
+    color: white;
+    height: 50px;
+    width: 100px;
+    padding: 4px 4px; /* Smaller padding */
+    font-size: 26px; /* Smaller font size */
+    border-radius: 5px;
+    margin-top: -12px;
+    margin-bottom: -32px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none; /* Remove underline */
+    text-align: center;
+}
+
+.btn-home:hover {
+    background-color: #333333; /* Darker shade of black on hover */
+    color: white; /* Keep text white on hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <img src="/static/NEWLOGO.png" alt="Logo" class="logo">
+    </header>
+    <div>
+        <a href="/" class="btn-home">Home</a> <!-- Link to the home page -->
+    </div>
+
+    <!-- Main Content -->
+    <center>
+    <div class="container">
+        <h1 class="text-nowrap">Gastrointestinal Disease Predictor</h1>
+        <br>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <!-- Updated Form -->
+                <form action="{% url 'predictg' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %} <!-- CSRF Protection -->
+                    
+                    <div class="form-group">
+                        <label for="imageUpload" class="file-upload">
+                            Upload an Image (Endoscopy or Scan)
+                        </label>
+                        <input type="file" class="form-control input-box" id="imageUpload" name="uploadedImage" accept="image/*" required>
+                    </div>
+            
+                    <!-- Image Preview -->
+                    <img id="previewImage" class="image-preview" alt="Uploaded Image Preview">
+
+                    <!-- Delete Button -->
+                    <button type="button" class="btn btn-delete" id="deleteImage">Delete Image</button>
+
+                    <!-- Predict Button -->
+                    <button type="submit" class="btn btn-primary btn-predict">Predict</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </center>
+
+    <!-- JavaScript for Image Preview and Deletion -->
+    <script>
+        const imageUpload = document.getElementById('imageUpload');
+        const previewImage = document.getElementById('previewImage');
+        const deleteImage = document.getElementById('deleteImage');
+
+        // Show image preview when a file is selected
+        imageUpload.addEventListener('change', function () {
+            const file = imageUpload.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                    deleteImage.style.display = 'inline-block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Delete the uploaded image
+        deleteImage.addEventListener('click', function () {
+            imageUpload.value = '';
+            previewImage.src = '';
+            previewImage.style.display = 'none';
+            deleteImage.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
