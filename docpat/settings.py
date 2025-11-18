@@ -29,10 +29,25 @@ DEBUG = os.getenv('DEBUG', 'False').lower() in ('1', 'true', 'yes')
 
 # Allow Render hostname dynamically; include localhost for dev
 render_external_hostname = os.getenv('RENDER_EXTERNAL_HOSTNAME')
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"] + ([render_external_hostname] if render_external_hostname else [])
+# Also check for RENDER service hostname (alternative env var)
+if not render_external_hostname:
+    render_external_hostname = os.getenv('RENDER_SERVICE_HOSTNAME')
+
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com"]
+if render_external_hostname:
+    ALLOWED_HOSTS.append(render_external_hostname)
+    # Remove any leading/trailing whitespace
+    render_external_hostname = render_external_hostname.strip()
 
 # CSRF for Render
-CSRF_TRUSTED_ORIGINS = [f"https://{render_external_hostname}"] if render_external_hostname else []
+CSRF_TRUSTED_ORIGINS = []
+if render_external_hostname:
+    # Handle both with and without protocol
+    hostname = render_external_hostname.replace('https://', '').replace('http://', '')
+    CSRF_TRUSTED_ORIGINS.extend([
+        f"https://{hostname}",
+        f"http://{hostname}"
+    ])
 
 
 # Application definition
@@ -130,7 +145,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Use CompressedStaticFilesStorage instead of CompressedManifestStaticFilesStorage
+# to avoid issues if manifest files are missing
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
