@@ -145,9 +145,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-# Use CompressedStaticFilesStorage instead of CompressedManifestStaticFilesStorage
-# to avoid issues if manifest files are missing
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -156,6 +153,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+# WhiteNoise configuration for serving static files
+# Use CompressedStaticFilesStorage (without manifest) for better compatibility
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+# WhiteNoise settings
+WHITENOISE_USE_FINDERS = False  # Don't use finders in production (files are in STATIC_ROOT)
+WHITENOISE_AUTOREFRESH = DEBUG  # Only auto-refresh in development
+WHITENOISE_MANIFEST_STRICT = False  # Don't fail if manifest is missing
 
 # Ensure secure proxy header on Render
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
