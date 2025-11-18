@@ -16,9 +16,82 @@ from xc import predict_image  # Import the function from c.py
 def load_model(file_path):
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"The model file at {file_path} does not exist.")
-    with open(file_path, 'rb') as file:
-        model = pickle.load(file)
-    return model
+    
+    # Fix for scikit-learn version compatibility with monotonic_cst attribute
+    # This handles the error: 'DecisionTreeClassifier' object has no attribute 'monotonic_cst'
+    # The issue occurs when models trained with older scikit-learn are loaded with newer versions
+    
+    # Custom unpickler to handle the monotonic_cst compatibility issue
+    class CompatibleUnpickler(pickle.Unpickler):
+        def load(self):
+            obj = super().load()
+            # After loading, fix any monotonic_cst issues
+            if hasattr(obj, '__dict__'):
+                # Remove problematic monotonic_cst from __dict__ if it exists
+                if 'monotonic_cst' in obj.__dict__:
+                    try:
+                        # Try to access it - if it works, keep it
+                        _ = getattr(obj, 'monotonic_cst')
+                    except AttributeError:
+                        # If accessing fails, remove it from __dict__
+                        obj.__dict__.pop('monotonic_cst', None)
+            
+            # For tree-based classifiers, ensure monotonic_cst exists
+            model_type = type(obj).__name__
+            if 'Tree' in model_type or 'Classifier' in model_type:
+                if not hasattr(obj, 'monotonic_cst'):
+                    try:
+                        # Set it to None for compatibility
+                        setattr(obj, 'monotonic_cst', None)
+                    except:
+                        # If setattr fails, try adding to __dict__
+                        if hasattr(obj, '__dict__'):
+                            obj.__dict__['monotonic_cst'] = None
+            return obj
+    
+    try:
+        # Try loading with the custom unpickler first
+        with open(file_path, 'rb') as file:
+            unpickler = CompatibleUnpickler(file)
+            model = unpickler.load()
+        
+        # Additional post-processing
+        if hasattr(model, '__dict__'):
+            # Clean up any problematic attributes
+            if 'monotonic_cst' in model.__dict__ and not hasattr(model, 'monotonic_cst'):
+                model.__dict__.pop('monotonic_cst', None)
+        
+        return model
+    except (AttributeError, TypeError, KeyError) as e:
+        error_str = str(e)
+        if 'monotonic_cst' in error_str:
+            # Fallback: try regular pickle load and fix afterwards
+            import warnings
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                try:
+                    with open(file_path, 'rb') as file:
+                        model = pickle.load(file)
+                    
+                    # Force fix monotonic_cst
+                    if hasattr(model, '__dict__'):
+                        model.__dict__.pop('monotonic_cst', None)
+                    
+                    # Set monotonic_cst to None for compatibility
+                    model_type = type(model).__name__
+                    if 'Tree' in model_type or 'Classifier' in model_type:
+                        try:
+                            setattr(model, 'monotonic_cst', None)
+                        except:
+                            if hasattr(model, '__dict__'):
+                                model.__dict__['monotonic_cst'] = None
+                    
+                    return model
+                except Exception as e2:
+                    # If all else fails, raise the original error
+                    raise e
+        else:
+            raise
 def homepage(request):
         return render(request,"main.html")
 def breast(request):
