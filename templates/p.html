@@ -1,3 +1,4 @@
+{% load static %}
 <!-- p.html -->
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +99,7 @@
 
 <body>
     <header>
-        <img src="/static/NEWLOGO.png" alt="Logo" class="logo">
+        <img src="{% static 'NEWLOGO.png' %}" alt="Logo" class="logo">
     </header>
     <div>
         <a href="/" class="btn-home">Home</a> <!-- Link to the home page -->

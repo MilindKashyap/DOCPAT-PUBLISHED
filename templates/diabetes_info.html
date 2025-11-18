@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('/static/diabetes\ \(1\).jpg');
+            background-image: url('{% static "diabetes (1).jpg" %}');
             background-size: cover;
             background-position: center;
             color: #333;
@@ -81,7 +82,7 @@
 </head>
 <body>
     <header>
-        <img src="/static/NEWLOGO.png" alt="Logo" class="logo">
+        <img src="{% static 'NEWLOGO.png' %}" alt="Logo" class="logo">
         <h1>DIABETES</h1>
     </header>
     <div class="container">

@@ -1,12 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="og:title" content="DOC-PAT : Smart Disease Predictor">
   <meta name="author" content="MILIND KASHYAP">
-  <meta name="og:image" content="static/favicon.ico">
+  <meta name="og:image" content="{% static 'favicon.ico' %}">
   <title>DOC-PAT</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
   <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
@@ -258,7 +259,7 @@ h2:hover {
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(94, 162, 231); height: 120px;">
     <a class="navbar-brand" >
-      <img src="/static/NEWLOGO.png" alt="Logo">
+      <img src="{% static 'NEWLOGO.png' %}" alt="Logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -306,7 +307,7 @@ h2:hover {
       <div class="col-md-6">
         <div class="image-container">
           <a href="diabetes/">
-            <img src="/static/diabetesnew.jpg" alt="Diabetes" class="disease-image">
+            <img src="{% static 'diabetesnew.jpg' %}" alt="Diabetes" class="disease-image">
           </a>
         </div>
         <div class="image-text">
@@ -316,7 +317,7 @@ h2:hover {
       <div class="col-md-6">
         <div class="image-container">
           <a href="breast/">
-            <img src="/static/Breast-Cancer-new (1).webp" alt="Breast Cancer" class="disease-image">
+            <img src="{% static 'Breast-Cancer-new (1).webp' %}" alt="Breast Cancer" class="disease-image">
           </a>
         </div>
         <div class="image-text">
@@ -328,7 +329,7 @@ h2:hover {
       <div class="col-md-6">
         <div class="image-container">
           <a href="heart/">
-            <img src="/static/heartnew (2).jpg" alt="Heart Disease" class="disease-image">
+            <img src="{% static 'heartnew (2).jpg' %}" alt="Heart Disease" class="disease-image">
           </a>
         </div>
         <div class="image-text">
@@ -338,7 +339,7 @@ h2:hover {
       <div class="col-md-6">
         <div class="image-container">
           <a href="liver/">
-            <img src="/static/livernew (1).webp" alt="Liver Disease" class="disease-image">
+            <img src="{% static 'livernew (1).webp' %}" alt="Liver Disease" class="disease-image">
           </a>
         </div>
         <div class="image-text">
@@ -352,7 +353,7 @@ h2:hover {
       <div class="col-md-12 text-center">
         <div class="image-container">
           <a href="GI_diseases/">
-            <img src="/static/ginew.jpeg" alt="Centered Image" class="disease-image">
+            <img src="{% static 'ginew.jpeg' %}" alt="Centered Image" class="disease-image">
           </a>
         </div>
         <div class="image-text">
@@ -389,7 +390,7 @@ h2:hover {
   <div class="row">
     <div class="col-md-4">
       <div class="review-box">
-        <img src="/static/review.jpg" alt="Reviewer Aryan" class="reviewer-photo">
+        <img src="{% static 'review.jpg' %}" alt="Reviewer Aryan" class="reviewer-photo">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>"Great app! Really helped me understand my health better."</p>
         <small>- Aryan</small>
@@ -397,7 +398,7 @@ h2:hover {
     </div>
     <div class="col-md-4">
       <div class="review-box">
-        <img src="/static/review.jpg" alt="Reviewer Mayank" class="reviewer-photo">
+        <img src="{% static 'review.jpg' %}" alt="Reviewer Mayank" class="reviewer-photo">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
         <p>"Good app, but could use some improvements."</p>
         <small>- Mayank</small>
@@ -405,7 +406,7 @@ h2:hover {
     </div>
     <div class="col-md-4">
       <div class="review-box">
-        <img src="/static/review.jpg" alt="Reviewer Ved" class="reviewer-photo">
+        <img src="{% static 'review.jpg' %}" alt="Reviewer Ved" class="reviewer-photo">
         <div class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
         <p>"Decent app, needs more features."</p>
         <small>- Ved</small>
